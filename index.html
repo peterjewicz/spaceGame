@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<title>Snake Game</title>
+		<link rel="stylesheet" type="text/css" href="fonts/stylesheet.css">
+		<script src="phaser.js"></script>
+		<script src="states/startScreen.js"></script>
+		<script src="states/endScreen.js"></script>
+		<script src="states/helpScreen.js"></script>
+		<script src="states/mainState.js"></script>
+		<script src="world/dividers.js"></script>
+		<script src="utilites/collisionHandlers.js"></script>
+		<script src="obstacles/planet.js"></script>
+		<script>
+			//TODO move this to its own file
+			//window.devicePixelRatio
+			var	game = new Phaser.Game(window.innerWidth , window.innerHeight, Phaser.CANVAS, 'game');
+
+			//the game was designed around iphone 6, all other sizes are scaled according to this
+			game.baseWidth = 375;
+			game.baseHeight = 667;
+
+			//the base scale state for the game
+			//.5 all assets are designed at twice the size of our base
+			game.baseScale = .5;
+		</script>
+		<style>
+			body, html{margin: 0; overflow: hidden; }
+		</style>
+	</head>
+	<body>
+	</body>
+	<script>
+
+		function setScaleWidth(){
+			return game.width/game.baseWidth * .5;
+		}
+
+		window.onload = function(e){
+			game.state.add('Game', mainState);
+			game.state.add('startScreen', startScreen);
+			game.state.add('endScreen', endScreen);
+			game.state.add('helpScreen', helpScreen);
+			game.state.start('startScreen');
+		}
+
+	</script>
+</html>
